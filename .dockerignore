@@ -1,5 +1,4 @@
 # Ignore files not needed to build.
 
 .idea/
-# Build with maven before creating docker image
-src/
+

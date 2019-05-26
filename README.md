@@ -95,3 +95,27 @@ Build the docker image.
 - Expose the Prisma Server via `kubectl forward-proxy pod/prisma 4466:4466`.
 
 - Open a browser to http://localhost:4466.
+
+_Note: if the `managementApiKey` property was set, to be able to access the Prisma server, the environment variable `PRISMA_MANAGEMENT_API_SECRET` to the value of the `managementApiKey`. Then `prisma token` can be used to generate a JWT token which can be used in the GraphQL Playground - HTTP Headers._
+
+**GraphQL Playground - HTTP Headers**
+```json
+{
+  "Authorization": "Bearer <your jwt token>"
+}
+```
+
+- Deploy a database model
+
+  - Install the Prisma tool. See the [Prisma website](https://prisma.io/).
+  - Create a `prima.yaml` file
+
+```yaml
+endpoint: http://localhost:4466/ipos-api/develop
+datamodel: datamodel.prisma
+```
+
+  - Define a `database.model`
+
+  - Deploy the database model:  
+    `prisma deploy`
