@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: prisma
+  name: prisma
+spec:
+  initContainers:
+  - image: prisma-server-init:latest
+    name: prisma-init
+    command: ["prisma-init-config", "/secrets", "/config/prisma.config"]
+    volumeMounts:
+      - name: secrets
+        mountPath: /secrets
+        readOnly: true
+      - name: config
+        mountPath: /config
+
+  containers:
+  - image: prismagraphql/prisma:1.33.0
+    imagePullPolicy: IfNotPresent
+    name: prisma
+    ports:
+      - name: api
+        containerPort: 4466
+    env:
+      - name: PRISMA_CONFIG_PATH
+        value: /config/prisma.config
+    volumeMounts:
+      - name: config
+        mountPath: /config
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+  volumes:
+    - name: secrets
+      secret:
+        secretName: prisma-config
+    - name: config
+      emptyDir: {}
+status: {}

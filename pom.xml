@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>eu.diversit.k8s.prisma-server</groupId>
+    <artifactId>prisma-service-config-init</artifactId>
+    <name>Prisma Service Config Init</name>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <description>A simple application which takes Prisma security settings via files and create a Prisma config file.</description>
+
+    <url>https://github.com/diversit/prisma-server-init</url>
+
+    <licenses>
+        <license>
+            <name>GNU General Public License v3.0</name>
+            <url>https://choosealicense.com/licenses/gpl-3.0/</url>
+        </license>
+    </licenses>
+
+    <organization>
+        <name>DiversIT Europe</name>
+        <url>https://diversit.eu/</url>
+    </organization>
+
+    <scm>
+        <url>https://github.com/diversit/prisma-server-init</url>
+        <connection>https://github.com/diversit/prisma-server-init.git</connection>
+        <developerConnection>git@github.com:diversit/prisma-server-init.git</developerConnection>
+    </scm>
+
+    <issueManagement>
+        <system>Issues</system>
+        <url>https://github.com/diversit/prisma-server-init/issues</url>
+    </issueManagement>
+
+    <!-- <ciManagement>
+        <system>Pipelines</system>
+        <url>https://github.com/example/test/pipelines</url>
+    </ciManagement> -->
+
+    <contributors>
+        <contributor>
+            <name>Joost den Boer</name>
+            <email>jdboer@diversit.eu</email>
+            <url>https://diversit.eu/</url>
+            <organization>DiversIT Europe</organization>
+            <organizationUrl>https://diversit.eu/</organizationUrl>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>Europe/Amsterdam</timezone>
+        </contributor>
+    </contributors>
+
+    <developers>
+        <developer>
+            <id>jdboer</id>
+            <email>jdboer@diversit.eu</email>
+            <name>Joost den Boer</name>
+            <organization>DiversIT Europe</organization>
+            <organizationUrl>http://diversit.eu/</organizationUrl>
+            <roles>
+                <role>architect</role>
+                <role>developer</role>
+            </roles>
+            <timezone>Europe/Amsterdam</timezone>
+        </developer>
+    </developers>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <main.class>eu.diversit.k8s.prisma.server.InitConfig</main.class>
+<!--        <java.version>11</java.version>-->
+        <java.version>1.8</java.version>
+        <junit.jupiter.version>5.4.2</junit.jupiter.version>
+        <maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
+        <maven.jar.plugin.version>3.1.1</maven.jar.plugin.version>
+        <maven.surefire.plugin.version>2.22.1</maven.surefire.plugin.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ginsberg</groupId>
+            <artifactId>junit5-system-exit</artifactId>
+            <version>1.0.0</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <showWarnings>true</showWarnings>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven.jar.plugin.version}</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>${main.class}</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <configuration>
+                    <mainClass>${main.class}</mainClass>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.plugin.version}</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>
