@@ -1,3 +1,7 @@
+[![Releases](https://img.shields.io/github/release/diversit/prisma-server-init?style=plastic)](https://github.com/diversit/prisma-server-init/releases) [![License](https://img.shields.io/github/license/diversit/prisma-server-init?style=plastic)](https://github.com/diversit/prisma-server-init/blob/master/LICENSE) [![Issues](https://img.shields.io/github/issues/diversit/prisma-server-init?style=plastic)](https://github.com/diversit/prisma-server-init/issues)
+[![Docker build](https://img.shields.io/docker/cloud/build/diversit/prisma-server-init?style=plastic)](https://hub.docker.com/r/diversit/prisma-server-init)
+[![Docker image tag](https://images.microbadger.com/badges/version/diversit/prisma-server-init.svg?style=plastic)](https://hub.docker.com/r/diversit/prisma-server-init)
+
 # Prisma Server Init
 
 **Goal:** 
